@@ -1,803 +1,433 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - The Viral Trees</title>
-    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.svg" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0e27;
-            color: #fff;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 40% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-            animation: gradientShift 15s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(20px, 20px); }
-        }
-
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 2rem;
-            background: rgba(10, 14, 39, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            z-index: 1000;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand-name {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 1px;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-menu a {
-            color: #e5e7eb;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .nav-menu a.active {
-            color: #3b82f6;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Main Content */
-        main {
-            padding-top: 100px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 5rem 2rem;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899, #f97316);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.2;
-            animation: slideDown 0.8s ease;
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-            animation: fadeIn 1.2s ease;
-        }
-
-        .floating-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.1);
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            top: 10%;
-            right: 5%;
-            animation-delay: 0s;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            bottom: 20%;
-            left: 10%;
-            animation-delay: 2s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Contact Info Cards */
-        .contact-section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .contact-card {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .contact-card:hover {
-            border-color: rgba(139, 92, 246, 0.6);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
-        }
-
-        .contact-card:hover::before {
-            top: -20%;
-            right: -20%;
-        }
-
-        .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .contact-card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: #fff;
-        }
-
-        .contact-card p {
-            color: #cbd5e1;
-            font-size: 1rem;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-card a {
-            color: #3b82f6;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-card a:hover {
-            color: #ec4899;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #fff;
-        }
-
-        .about-text p {
-            color: #cbd5e1;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .service-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border-radius: 10px;
-            border-left: 3px solid #3b82f6;
-            transition: all 0.3s ease;
-        }
-
-        .service-item:hover {
-            background: rgba(139, 92, 246, 0.2);
-            border-left-color: #8b5cf6;
-            transform: translateX(5px);
-        }
-
-        .service-item i {
-            font-size: 1.5rem;
-            color: #3b82f6;
-        }
-
-        .service-item:hover i {
-            color: #8b5cf6;
-        }
-
-        .about-visual {
-            position: relative;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .visual-box {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(139, 92, 246, 0.2));
-            border-radius: 20px;
-            border: 2px solid rgba(59, 130, 246, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-            }
-            50% { 
-                transform: scale(1.05);
-                box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
-            }
-        }
-
-        /* Contact Form */
-        .form-section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            padding: 3rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #cbd5e1;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 10px;
-            color: #fff;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(203, 213, 225, 0.5);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
-            background: rgba(15, 23, 42, 0.8);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, rgba(10, 14, 39, 0.9), rgba(15, 23, 42, 0.9));
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
-            padding: 3rem 2rem;
-            margin-top: 5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-text {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-
-        .footer-text a {
-            color: #3b82f6;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-text a:hover {
-            color: #8b5cf6;
-        }
-
-        /* Scroll to Top Button */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            border: none;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 1.3rem;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .scroll-top:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
-        }
-
-        .scroll-top.show {
-            display: flex;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                gap: 0;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(10, 14, 39, 0.95);
-                padding: 1rem;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .form-container {
-                padding: 2rem;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Viral Trees - Contact Us | Digital Marketing Agency</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.svg" />
+  <link rel="stylesheet" href="../assets/libs/owl.carousel/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="../assets/libs/aos-master/dist/aos.css">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 
 <body>
-    <!-- Header Navigation -->
-    <header>
-        <div class="nav-container">
-            <div class="brand-name">THE VIRAL TREES</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
+
+  <!-- Header -->
+  <header class="header border-4 border-primary border-top position-fixed start-0 top-0 w-100">
+    <div class="container">
+      <div class="header-wrapper d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-4 ms-auto">
+
+          <div class="btn-group">
+            <button
+              class="btn btn-secondary toggle-menu round-45 p-2 d-flex align-items-center justify-content-center bg-white rounded-circle"
+              type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              <iconify-icon icon="solar:hamburger-menu-line-duotone" class="menu-icon fs-8 text-dark"></iconify-icon>
             </button>
+            <ul class="dropdown-menu dropdown-menu-end p-4">
+              <div class="d-flex flex-column gap-6">
+                <div class="hstack justify-content-between border-bottom pb-6">
+                  <p class="mb-0 fs-5 text-dark">Menu</p>
+                  <button type="button" class="btn-close opacity-75" aria-label="Close"></button>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                  <ul class="header-menu list-unstyled mb-0 d-flex flex-column gap-2">
+                    <li class="header-item">
+                      <a href="index.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Home</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="about-us.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">About</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="projects.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Services</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="blog.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Blog</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="contact.html" aria-current="true"
+                        class="header-link active hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <a class="text-dark" href="tel:+91-8800311202">+91-8800311202</a>
+                  <a class="fs-8 text-dark fw-bold" href="mailto:info@theviraltrees.com">info@theviraltrees.com</a>
+                </div>
+              </div>
+            </ul>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="floating-circle circle-1"></div>
-            <div class="floating-circle circle-2"></div>
-            <div class="hero-content">
-                <h1>Get in Touch</h1>
-                <p>Ready to transform your digital presence? Let's collaborate and create something amazing together.</p>
+  <!--  Page Wrapper -->
+  <div class="page-wrapper overflow-hidden">
+
+    <!--  Banner Section -->
+    <section class="banner-section banner-inner-section position-relative overflow-hidden d-flex align-items-end"
+      style="background-image: url(../assets/images/backgrounds/contact-banner.jpg);">
+      <div class="container">
+        <div class="d-flex flex-column gap-4 pb-5 pb-xl-10 position-relative z-1">
+          <div class="row align-items-center">
+            <div class="col-xl-4">
+              <div class="d-flex align-items-center gap-4" data-aos="fade-up" data-aos-delay="100"
+                data-aos-duration="1000">
+                <img src="../assets/images/svgs/primary-leaf.svg" alt="" class="img-fluid animate-spin">
+                <p class="mb-0 text-white fs-5 text-opacity-70">Ready to <span class="text-primary">grow your business</span>? Let's connect and discuss your digital marketing goals.</p>
+              </div>
             </div>
-        </section>
-
-        <!-- Contact Information Section -->
-        <section class="contact-section">
-            <h2 class="section-title">Contact Information</h2>
-            <div class="contact-cards">
-                <div class="contact-card">
-                    <div class="card-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <h3>Location</h3>
-                    <p>129, First Floor, RG Mall<br>Rohini Sector 9<br>New Delhi, India</p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <h3>Phone</h3>
-                    <p>Give us a call at<br><a href="tel:+91-7669249911">+91 7669249911</a></p>
-                </div>
-                <div class="contact-card">
-                    <div class="card-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <h3>Email</h3>
-                    <p>Send us an email at<br><a href="mailto:info@theviraltrees.com">info@theviraltrees.com</a></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="about-section">
-            <h2 class="section-title">About The Viral Trees</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <h3>Your Digital Marketing Partner</h3>
-                    <p>The Viral Trees is a leading digital marketing agency specializing in growing your business with comprehensive online marketing services. Our expert team handles every aspect of digital marketing—from SEO and social media to paid campaigns and design.</p>
-                    <p>Founded in 2017, we've been committed to transforming digital presence and delivering measurable results for our clients across Delhi and beyond.</p>
-                    <div class="services-grid">
-                        <div class="service-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Lead Generation</span>
-                        </div>
-                        <div class="service-item">
-                            <i class="fas fa-share-alt"></i>
-                            <span>Social Media Marketing</span>
-                        </div>
-                        <div class="service-item">
-                            <i class="fas fa-search"></i>
-                            <span>SEO & Local SEO</span>
-                        </div>
-                        <div class="service-item">
-                            <i class="fas fa-paint-brush"></i>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-visual">
-                    <div class="visual-box">
-                        <i class="fas fa-rocket" style="color: #3b82f6;"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Form Section -->
-        <section class="form-section">
-            <h2 class="section-title">Send us a Message</h2>
-            <div class="form-container">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="Your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p class="footer-text">© 2025 The Viral Trees. All rights reserved. | Designed & Developed with <i class="fas fa-heart" style="color: #ec4899;"></i> by <a href="https://theviraltrees.com" target="_blank">The Viral Trees</a></p>
+          </div>
+          <div class="d-flex align-items-end gap-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <h1 class="mb-0 fs-16 text-white lh-1">Contact Us</h1>
+            <a href="javascript:void(0)" class="p-1 ps-7 bg-primary rounded-pill">
+              <span class="bg-white round-52 rounded-circle d-flex align-items-center justify-content-center">
+                <iconify-icon icon="lucide:arrow-up-right" class="fs-8 text-dark"></iconify-icon>
+              </span>
+            </a>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop">
-        <i class="fas fa-arrow-up"></i>
+    <!-- Contact Info Section -->
+    <section class="contact-info py-5 py-lg-11 py-xl-12 bg-light-gray">
+      <div class="container">
+        <div class="row gap-7 gap-xl-0 mb-8">
+          <div class="col-xl-4 col-xxl-4">
+            <div class="d-flex align-items-center gap-7 py-2" data-aos="fade-right" data-aos-delay="100"
+              data-aos-duration="1000">
+              <span
+                class="round-36 flex-shrink-0 text-dark rounded-circle bg-primary hstack justify-content-center fw-medium">01</span>
+              <hr class="border-line">
+              <span class="badge text-bg-dark">Get in Touch</span>
+            </div>
+          </div>
+          <div class="col-xl-8 col-xxl-7">
+            <div class="d-flex flex-column gap-6" data-aos="fade-up" data-aos-delay="100"
+              data-aos-duration="1000">
+              <h2 class="mb-0">Let's Start Your Digital Journey</h2>
+              <p class="fs-5 mb-0">Have questions about our services? Want to discuss your digital marketing strategy? We're here to help. Reach out to us today for a free consultation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4">
+          <!-- Email Contact -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+            <div class="card border h-100">
+              <div class="card-body p-6 d-flex flex-column gap-4">
+                <div class="round-64 bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                  <iconify-icon icon="lucide:mail" class="fs-5 text-primary"></iconify-icon>
+                </div>
+                <div>
+                  <h5 class="mb-2 text-dark">Email Us</h5>
+                  <p class="mb-0 text-dark text-opacity-70">We typically respond within 24 hours</p>
+                </div>
+                <a href="mailto:info@theviraltrees.com" class="text-primary fw-bold text-decoration-none">
+                  info@theviraltrees.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phone Contact -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="card border h-100">
+              <div class="card-body p-6 d-flex flex-column gap-4">
+                <div class="round-64 bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                  <iconify-icon icon="lucide:phone" class="fs-5 text-primary"></iconify-icon>
+                </div>
+                <div>
+                  <h5 class="mb-2 text-dark">Call Us</h5>
+                  <p class="mb-0 text-dark text-opacity-70">Mon-Fri, 9 AM - 6 PM IST</p>
+                </div>
+                <a href="tel:+91-8800311202" class="text-primary fw-bold text-decoration-none">
+                  +91-8800311202
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Address Contact -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="card border h-100">
+              <div class="card-body p-6 d-flex flex-column gap-4">
+                <div class="round-64 bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                  <iconify-icon icon="lucide:map-pin" class="fs-5 text-primary"></iconify-icon>
+                </div>
+                <div>
+                  <h5 class="mb-2 text-dark">Visit Us</h5>
+                  <p class="mb-0 text-dark text-opacity-70">New Delhi, Saket</p>
+                </div>
+                <p class="mb-0 text-dark text-opacity-60 fs-6">55, 2nd Floor, Westend Marg<br>Saidullajab, Saket 110089, India</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  Get in touch Section -->
+    <section class="get-in-touch py-5 py-lg-11 py-xl-12">
+      <div class="container">
+        <div class="d-flex flex-column gap-5 gap-xl-10">
+          <div class="row gap-7 gap-xl-0">
+            <div class="col-xl-4 col-xxl-4">
+              <div class="d-flex align-items-center gap-7 py-2" data-aos="fade-right" data-aos-delay="100"
+                data-aos-duration="1000">
+                <span
+                  class="round-36 flex-shrink-0 text-dark rounded-circle bg-primary hstack justify-content-center fw-medium">02</span>
+                <hr class="border-line bg-white">
+                <span class="badge text-bg-dark">Contact Form</span>
+              </div>
+            </div>
+            <div class="col-xl-8 col-xxl-7">
+              <div class="row">
+                <div class="col-xxl-8">
+                  <div class="d-flex flex-column gap-6" data-aos="fade-up" data-aos-delay="100"
+                    data-aos-duration="1000">
+                    <h2 class="mb-0">Send Us a Message</h2>
+                    <p class="fs-5 mb-0 text-opacity-70">Fill out the form below and we'll get back to you shortly with a personalized response.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-between gap-7 gap-xl-0">
+            <div class="col-xl-3">
+              <div class="d-flex flex-column gap-6" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+                <div>
+                  <h5 class="mb-2 text-dark">Why Contact Us?</h5>
+                  <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+                    <li class="hstack gap-2">
+                      <iconify-icon icon="lucide:check-circle" class="text-primary fs-6"></iconify-icon>
+                      <span class="fs-6">Free Consultation</span>
+                    </li>
+                    <li class="hstack gap-2">
+                      <iconify-icon icon="lucide:check-circle" class="text-primary fs-6"></iconify-icon>
+                      <span class="fs-6">Custom Strategy</span>
+                    </li>
+                    <li class="hstack gap-2">
+                      <iconify-icon icon="lucide:check-circle" class="text-primary fs-6"></iconify-icon>
+                      <span class="fs-6">Quick Response</span>
+                    </li>
+                    <li class="hstack gap-2">
+                      <iconify-icon icon="lucide:check-circle" class="text-primary fs-6"></iconify-icon>
+                      <span class="fs-6">Expert Advice</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-8">
+              <form class="d-flex flex-column gap-7" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <div>
+                      <label class="form-label fw-bold mb-2 text-dark">Full Name *</label>
+                      <input type="text" class="form-control border-bottom border-dark" placeholder="Your Name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div>
+                      <label class="form-label fw-bold mb-2 text-dark">Email Address *</label>
+                      <input type="email" class="form-control border-bottom border-dark" placeholder="your@email.com" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="row g-4">
+                  <div class="col-md-6">
+                    <div>
+                      <label class="form-label fw-bold mb-2 text-dark">Phone Number</label>
+                      <input type="tel" class="form-control border-bottom border-dark" placeholder="+91-XXXXXXXXXX">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div>
+                      <label class="form-label fw-bold mb-2 text-dark">Company Name</label>
+                      <input type="text" class="form-control border-bottom border-dark" placeholder="Your Company">
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label class="form-label fw-bold mb-2 text-dark">Service Interested In *</label>
+                  <select class="form-control border-bottom border-dark" required>
+                    <option value="">Select a service</option>
+                    <option value="google-ads">Google Ads</option>
+                    <option value="meta-ads">Meta Ads</option>
+                    <option value="lead-generation">Lead Generation</option>
+                    <option value="seo">SEO Services</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="social-media">Social Media Marketing</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="form-label fw-bold mb-2 text-dark">Message *</label>
+                  <textarea class="form-control border-bottom border-dark" placeholder="Tell us about your project and goals" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn w-100 justify-content-center">
+                  <span class="btn-text">Send Message</span>
+                  <iconify-icon icon="lucide:arrow-up-right"
+                    class="btn-icon bg-white text-dark round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-contact py-5 py-lg-11 py-xl-12 bg-light-gray">
+      <div class="container">
+        <div class="row gap-7 gap-xl-0 mb-8">
+          <div class="col-xl-4 col-xxl-4">
+            <div class="d-flex align-items-center gap-7 py-2" data-aos="fade-right" data-aos-delay="100"
+              data-aos-duration="1000">
+              <span
+                class="round-36 flex-shrink-0 text-dark rounded-circle bg-primary hstack justify-content-center fw-medium">03</span>
+              <hr class="border-line">
+              <span class="badge text-bg-dark">FAQ</span>
+            </div>
+          </div>
+          <div class="col-xl-8 col-xxl-7">
+            <div class="d-flex flex-column gap-6" data-aos="fade-up" data-aos-delay="100"
+              data-aos-duration="1000">
+              <h2 class="mb-0">Frequently Asked Questions</h2>
+              <p class="fs-5 mb-0 text-opacity-70">Find answers to common questions about our services and how we can help your business.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-xl-8">
+            <div class="accordion accordion-flush" id="faqAccordion" data-aos="fade-up" data-aos-delay="200"
+              data-aos-duration="1000">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fs-8 fw-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq1" aria-expanded="false">
+                    How long does it take to see results?
+                  </button>
+                </h2>
+                <div id="faq1" class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body pt-0 fs-5 text-dark">Results vary by service. PPC campaigns show results within 1-2 weeks. SEO typically takes 3-6 months for significant improvements. Lead generation shows steady growth within 4-8 weeks. We'll provide a timeline during your consultation.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fs-8 fw-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq2" aria-expanded="false">
+                    What is your typical engagement process?
+                  </button>
+                </h2>
+                <div id="faq2" class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body pt-0 fs-5 text-dark">We start with a free consultation to understand your goals, conduct a competitive analysis, develop a customized strategy, and implement your campaigns. We provide regular updates and monthly performance reports throughout our engagement.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fs-8 fw-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq3" aria-expanded="false">
+                    Do you offer custom packages?
+                  </button>
+                </h2>
+                <div id="faq3" class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body pt-0 fs-5 text-dark">Yes! We understand every business is unique. We offer flexible packages that can be customized based on your specific needs, budget, and goals. Contact us for a personalized quote.</div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed fs-8 fw-bold" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#faq4" aria-expanded="false">
+                    What's your average ROI improvement?
+                  </button>
+                </h2>
+                <div id="faq4" class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion">
+                  <div class="accordion-body pt-0 fs-5 text-dark">Our clients typically see an average 300% ROI improvement within the first 6 months. However, results depend on your industry, competition, and initial metrics. We'll establish clear KPIs during consultation.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer bg-dark py-5 py-lg-11 py-xl-12">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 mb-8 mb-xl-0">
+          <div class="d-flex flex-column gap-8 pe-xl-5">
+            <h2 class="mb-0 text-white">Let's Grow Your Business Together</h2>
+            <div class="d-flex flex-column gap-2">
+              <a href="mailto:info@theviraltrees.com" class="link-hover hstack gap-3 text-white fs-5">
+                <iconify-icon icon="lucide:arrow-up-right" class="fs-7 text-primary"></iconify-icon>
+                info@theviraltrees.com
+              </a>
+              <a href="tel:+91-8800311202"
+                class="link-hover hstack gap-3 text-white fs-5">
+                <iconify-icon icon="lucide:phone" class="fs-7 text-primary"></iconify-icon>
+                +91-8800311202
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xl-2 mb-8 mb-xl-0">
+          <ul class="footer-menu list-unstyled mb-0 d-flex flex-column gap-2">
+            <li><a class="link-hover fs-5 text-white" href="index.html">Home</a></li>
+            <li><a class="link-hover fs-5 text-white" href="about-us.html">About</a></li>
+            <li><a class="link-hover fs-5 text-white" href="projects.html">Services</a></li>
+            <li><a class="link-hover fs-5 text-white" href="blog.html">Blog</a></li>
+            <li><a class="link-hover fs-5 text-white" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-xl-2 mb-8 mb-xl-0">
+          <ul class="footer-menu list-unstyled mb-0 d-flex flex-column gap-2">
+            <li><a class="link-hover fs-5 text-white" href="#!">Facebook</a></li>
+            <li><a class="link-hover fs-5 text-white" href="#!">Instagram</a></li>
+            <li><a class="link-hover fs-5 text-white" href="#!">Twitter</a></li>
+            <li><a class="link-hover fs-5 text-white" href="#!">LinkedIn</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 col-xl-3 mb-8 mb-xl-0">
+          <p class="mb-0 text-white text-opacity-70 text-md-end">© The Viral Trees copyright 2025</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="get-template hstack gap-2">
+    <button class="btn bg-primary p-2 round-52 rounded-circle hstack justify-content-center flex-shrink-0"
+      id="scrollToTopBtn">
+      <iconify-icon icon="lucide:arrow-up" class="fs-7 text-dark"></iconify-icon>
     </button>
+  </div>
 
-    <script>
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when link is clicked
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Scroll to Top Button
-        const scrollTop = document.getElementById('scrollTop');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTop.classList.add('show');
-            } else {
-                scrollTop.classList.remove('show');
-            }
-        });
-
-        scrollTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Form Submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
-
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
-    </script>
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="../assets/libs/aos-master/dist/aos.js"></script>
+  <script src="../assets/js/custom.js"></script>
+  <!-- solar icons -->
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </body>
 
 </html>
