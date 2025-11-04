@@ -16789,4 +16789,20 @@ ul {
 .btn-dark:hover {
   color: var(--bs-dark);
   background-color: var(--bs-white);
+
 }/*# sourceMappingURL=styles.css.map */
+/* === Smooth Cursor Styles === */
+#smooth-cursor-default {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #9fef00;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(159, 239, 0, 0.6), inset 0 0 10px rgba(159, 239, 0, 0.4);
+  background: radial-gradient(circle at 30% 30%, rgba(159, 239, 0, 0.15), transparent);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: normal;
+  opacity: 1;
+  transition: transform 0.1s ease, opacity 0.3s ease;
+}
