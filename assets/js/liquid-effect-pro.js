@@ -1,271 +1,215 @@
-/**
- * Liquid Effect PRO - Advanced Mouse Hover Animation
- * Multiple themes and customization options
- * Similar to lusion.co website hover effects
- */
-
-class LiquidEffectPro {
-  constructor(options = {}) {
-    this.canvas = null;
-    this.ctx = null;
-    this.particles = [];
-    this.mouse = { x: 0, y: 0, radius: 80, vx: 0, vy: 0 };
-    this.animationId = null;
-    this.lastMouseX = 0;
-    this.lastMouseY = 0;
-    
-    this.presets = {
-      default: {
-        particleCount: 60,
-        friction: 0.98,
-        gravity: 0.08,
-        connectionDistance: 120,
-        particleRadius: 2.5,
-        lineColor: 'rgba(0, 173, 239, 0.25)',
-        particleColor: 'rgba(0, 173, 239, 0.7)',
-        mouseRepulsionForce: 2
-      },
-      primary: {
-        particleCount: 70,
-        friction: 0.96,
-        gravity: 0.05,
-        connectionDistance: 140,
-        particleRadius: 2,
-        lineColor: 'rgba(255, 107, 107, 0.2)',
-        particleColor: 'rgba(255, 107, 107, 0.6)',
-        mouseRepulsionForce: 2.5
-      },
-      neon: {
-        particleCount: 80,
-        friction: 0.97,
-        gravity: 0.1,
-        connectionDistance: 100,
-        particleRadius: 3,
-        lineColor: 'rgba(138, 43, 226, 0.3)',
-        particleColor: 'rgba(138, 43, 226, 0.8)',
-        mouseRepulsionForce: 3
-      },
-      minimal: {
-        particleCount: 30,
-        friction: 0.99,
-        gravity: 0.02,
-        connectionDistance: 80,
-        particleRadius: 1.5,
-        lineColor: 'rgba(100, 100, 100, 0.2)',
-        particleColor: 'rgba(100, 100, 100, 0.5)',
-        mouseRepulsionForce: 1.5
-      },
-      soft: {
-        particleCount: 100,
-        friction: 0.995,
-        gravity: 0.01,
-        connectionDistance: 150,
-        particleRadius: 2,
-        lineColor: 'rgba(200, 200, 200, 0.15)',
-        particleColor: 'rgba(200, 200, 200, 0.4)',
-        mouseRepulsionForce: 1
-      }
-    };
-
-    this.theme = options.theme || 'default';
-    this.config = {
-      ...this.presets[this.theme],
-      ...options
-    };
-
-    this.init();
-  }
-
-  init() {
+class LiquidWaterEffect {
+  constructor() {
     this.canvas = document.createElement('canvas');
-    this.canvas.id = 'liquid-effect-canvas';
+    this.canvas.id = 'water-liquid-effect';
     this.canvas.style.cssText = `
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 1;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
       pointer-events: none;
-      mix-blend-mode: screen;
-      will-change: contents;
     `;
-    document.body.appendChild(this.canvas);
+    document.body.insertBefore(this.canvas, document.body.firstChild);
 
-    this.ctx = this.canvas.getContext('2d', { alpha: true });
-    
-    this.resizeCanvas();
-    window.addEventListener('resize', () => this.resizeCanvas());
+    this.ctx = this.canvas.getContext('2d');
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
 
-    document.addEventListener('mousemove', (e) => this.onMouseMove(e));
-    document.addEventListener('mouseleave', () => this.onMouseLeave());
-    document.addEventListener('mousedown', () => this.onMouseDown());
-    document.addEventListener('mouseup', () => this.onMouseUp());
+    this.mouse = { x: this.width / 2, y: this.height / 2 };
+    this.waves = [];
+    this.particles = [];
+    this.time = 0;
 
-    this.createParticles();
+    this.initWaves();
+    this.initParticles();
+    this.setupEventListeners();
     this.animate();
   }
 
-  resizeCanvas() {
-    this.canvas.width = window.innerWidth;
-    this.canvas.height = window.innerHeight;
-  }
-
-  createParticles() {
-    this.particles = [];
-    for (let i = 0; i < this.config.particleCount; i++) {
-      this.particles.push({
-        x: Math.random() * this.canvas.width,
-        y: Math.random() * this.canvas.height,
-        vx: (Math.random() - 0.5) * 1,
-        vy: (Math.random() - 0.5) * 1,
-        radius: this.config.particleRadius,
-        originalX: Math.random() * this.canvas.width,
-        originalY: Math.random() * this.canvas.height,
-        life: 1,
-        maxLife: 1
+  initWaves() {
+    for (let i = 0; i < 5; i++) {
+      this.waves.push({
+        x: Math.random() * this.width,
+        y: Math.random() * this.height,
+        amplitude: Math.random() * 30 + 20,
+        frequency: Math.random() * 0.02 + 0.01,
+        phase: Math.random() * Math.PI * 2,
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2
       });
     }
   }
 
-  onMouseMove(e) {
-    this.mouse.vx = e.clientX - this.lastMouseX;
-    this.mouse.vy = e.clientY - this.lastMouseY;
-    this.lastMouseX = e.clientX;
-    this.lastMouseY = e.clientY;
-    this.mouse.x = e.clientX;
-    this.mouse.y = e.clientY;
+  initParticles() {
+    for (let i = 0; i < 100; i++) {
+      this.particles.push({
+        x: Math.random() * this.width,
+        y: Math.random() * this.height,
+        vx: (Math.random() - 0.5) * 3,
+        vy: (Math.random() - 0.5) * 3 - 1,
+        life: 1,
+        size: Math.random() * 4 + 2,
+        color: `hsl(${Math.random() * 60 + 180}, 100%, ${Math.random() * 50 + 25}%)`
+      });
+    }
   }
 
-  onMouseLeave() {
-    this.mouse.x = -this.mouse.radius * 2;
-    this.mouse.y = -this.mouse.radius * 2;
-    this.mouse.vx = 0;
-    this.mouse.vy = 0;
-  }
+  setupEventListeners() {
+    document.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
+      this.createWaveAtMouse();
+    });
 
-  onMouseDown() {
-    this.mouse.radius = 120;
-  }
-
-  onMouseUp() {
-    this.mouse.radius = 80;
-  }
-
-  updateParticles() {
-    this.particles.forEach((particle) => {
-      const dx = this.mouse.x - particle.x;
-      const dy = this.mouse.y - particle.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-
-      if (distance < this.mouse.radius) {
-        const angle = Math.atan2(dy, dx);
-        const force = (this.mouse.radius - distance) / this.mouse.radius;
-        const velocityFactor = Math.sqrt(this.mouse.vx * this.mouse.vx + this.mouse.vy * this.mouse.vy);
-        
-        particle.vx -= Math.cos(angle) * force * this.config.mouseRepulsionForce * (1 + velocityFactor * 0.5);
-        particle.vy -= Math.sin(angle) * force * this.config.mouseRepulsionForce * (1 + velocityFactor * 0.5);
-      }
-
-      particle.vx *= this.config.friction;
-      particle.vy *= this.config.friction;
-      particle.vy += this.config.gravity;
-
-      const returnForce = 0.001;
-      particle.vx += (particle.originalX - particle.x) * returnForce;
-      particle.vy += (particle.originalY - particle.y) * returnForce;
-
-      particle.x += particle.vx;
-      particle.y += particle.vy;
-
-      if (particle.x < -50) particle.x = this.canvas.width + 50;
-      if (particle.x > this.canvas.width + 50) particle.x = -50;
-      if (particle.y < -50) particle.y = this.canvas.height + 50;
-      if (particle.y > this.canvas.height + 50) particle.y = -50;
+    window.addEventListener('resize', () => {
+      this.width = window.innerWidth;
+      this.height = window.innerHeight;
+      this.canvas.width = this.width;
+      this.canvas.height = this.height;
     });
   }
 
-  drawParticles() {
-    this.particles.forEach((particle) => {
-      const gradient = this.ctx.createRadialGradient(
-        particle.x, particle.y, 0,
-        particle.x, particle.y, particle.radius * 2
-      );
-      
-      const baseColor = this.config.particleColor;
-      gradient.addColorStop(0, baseColor.replace('0.7', '0.3'));
-      gradient.addColorStop(1, baseColor.replace('0.7', '0'));
+  createWaveAtMouse() {
+    if (Math.random() < 0.3) {
+      this.waves.push({
+        x: this.mouse.x,
+        y: this.mouse.y,
+        amplitude: Math.random() * 40 + 30,
+        frequency: Math.random() * 0.03 + 0.02,
+        phase: 0,
+        vx: (Math.random() - 0.5) * 4,
+        vy: (Math.random() - 0.5) * 4,
+        maxLife: 2,
+        life: 2
+      });
 
-      this.ctx.fillStyle = gradient;
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.radius * 2, 0, Math.PI * 2);
-      this.ctx.fill();
-
-      this.ctx.fillStyle = this.config.particleColor;
-      this.ctx.beginPath();
-      this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-      this.ctx.fill();
-    });
-  }
-
-  drawConnections() {
-    const particles = this.particles;
-    
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < this.config.connectionDistance) {
-          const opacity = (1 - distance / this.config.connectionDistance) * 0.6;
-          this.ctx.strokeStyle = this.config.lineColor.replace('0.25', opacity);
-          this.ctx.lineWidth = 1;
-          this.ctx.beginPath();
-          this.ctx.moveTo(particles[i].x, particles[i].y);
-          this.ctx.lineTo(particles[j].x, particles[j].y);
-          this.ctx.stroke();
+      if (Math.random() < 0.7) {
+        for (let i = 0; i < 5; i++) {
+          this.particles.push({
+            x: this.mouse.x,
+            y: this.mouse.y,
+            vx: (Math.random() - 0.5) * 6,
+            vy: (Math.random() - 0.5) * 6 - 2,
+            life: 1,
+            size: Math.random() * 6 + 3,
+            color: `hsl(${Math.random() * 40 + 190}, 100%, ${Math.random() * 40 + 30}%)`
+          });
         }
       }
     }
   }
 
-  animate = () => {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.updateParticles();
-    this.drawConnections();
-    this.drawParticles();
-    this.animationId = requestAnimationFrame(this.animate);
-  }
+  updateWaves() {
+    for (let i = this.waves.length - 1; i >= 0; i--) {
+      const wave = this.waves[i];
+      wave.x += wave.vx;
+      wave.y += wave.vy;
+      wave.phase += wave.frequency;
+      wave.amplitude *= 0.98;
 
-  setTheme(themeName) {
-    if (this.presets[themeName]) {
-      this.theme = themeName;
-      this.config = { ...this.presets[themeName] };
-      this.createParticles();
+      if (wave.life !== undefined) {
+        wave.life -= 0.02;
+        if (wave.life <= 0) {
+          this.waves.splice(i, 1);
+        }
+      }
+
+      if (wave.x < -100 || wave.x > this.width + 100 ||
+          wave.y < -100 || wave.y > this.height + 100) {
+        this.waves.splice(i, 1);
+      }
     }
   }
 
-  updateConfig(newConfig) {
-    this.config = { ...this.config, ...newConfig };
+  updateParticles() {
+    for (let i = this.particles.length - 1; i >= 0; i--) {
+      const p = this.particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.1;
+      p.life -= 0.01;
+      p.vx *= 0.99;
+
+      if (p.life <= 0 || p.y > this.height) {
+        this.particles.splice(i, 1);
+      }
+    }
   }
 
-  destroy() {
-    cancelAnimationFrame(this.animationId);
-    if (this.canvas) this.canvas.remove();
+  drawWaves() {
+    this.waves.forEach(wave => {
+      const gradient = this.ctx.createRadialGradient(wave.x, wave.y, 0, wave.x, wave.y, wave.amplitude * 3);
+      const opacity = wave.life !== undefined ? wave.life : 1;
+      
+      gradient.addColorStop(0, `rgba(100, 200, 255, ${opacity * 0.4})`);
+      gradient.addColorStop(0.5, `rgba(100, 150, 255, ${opacity * 0.2})`);
+      gradient.addColorStop(1, `rgba(100, 150, 255, 0)`);
+
+      this.ctx.fillStyle = gradient;
+      this.ctx.beginPath();
+      this.ctx.arc(wave.x, wave.y, wave.amplitude * 3, 0, Math.PI * 2);
+      this.ctx.fill();
+
+      this.drawWaveCircles(wave, opacity);
+    });
   }
 
-  pause() {
-    cancelAnimationFrame(this.animationId);
+  drawWaveCircles(wave, opacity) {
+    for (let i = 0; i < 3; i++) {
+      const radius = Math.sin(wave.phase + i) * wave.amplitude + wave.amplitude;
+      this.ctx.strokeStyle = `rgba(100, 200, 255, ${opacity * (0.3 - i * 0.1)})`;
+      this.ctx.lineWidth = 2;
+      this.ctx.beginPath();
+      this.ctx.arc(wave.x, wave.y, radius, 0, Math.PI * 2);
+      this.ctx.stroke();
+    }
   }
 
-  resume() {
-    this.animate();
+  drawParticles() {
+    this.particles.forEach(p => {
+      this.ctx.fillStyle = p.color.replace('1)', `${p.life})`);
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      this.ctx.fill();
+
+      const glow = this.ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2);
+      glow.addColorStop(0, p.color.replace('1)', `${p.life * 0.5})`));
+      glow.addColorStop(1, p.color.replace('1)', '0)'));
+      this.ctx.fillStyle = glow;
+      this.ctx.beginPath();
+      this.ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+      this.ctx.fill();
+    });
+  }
+
+  drawFluidBackground() {
+    const gradient = this.ctx.createLinearGradient(0, 0, this.width, this.height);
+    gradient.addColorStop(0, 'rgba(10, 20, 40, 0.1)');
+    gradient.addColorStop(0.5, 'rgba(20, 40, 80, 0.05)');
+    gradient.addColorStop(1, 'rgba(10, 20, 40, 0.1)');
+
+    this.ctx.fillStyle = gradient;
+    this.ctx.fillRect(0, 0, this.width, this.height);
+  }
+
+  animate = () => {
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    
+    this.drawFluidBackground();
+    this.updateWaves();
+    this.updateParticles();
+    this.drawWaves();
+    this.drawParticles();
+
+    this.time++;
+    requestAnimationFrame(this.animate);
   }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.liquidEffect = new LiquidEffectPro({ theme: 'default' });
+  new LiquidWaterEffect();
 });
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = LiquidEffectPro;
-}
