@@ -4,19 +4,22 @@
 
 // colors
 $white: #fff !default;
-$gray-100: rgba(31, 42, 46, 0.12) !default;
-$gray-200: #F4F8FA !default;
-$gray-300: rgba(31, 42, 46, 0.6) !default;
-$gray-400: rgba(31, 42, 46, 0.7) !default;
-$gray-500: #1F2A2E !default;
+$gray-100: rgba(138, 163, 224, 0.12) !default;
+$gray-200: #0A0E27 !default;
+$gray-300: rgba(138, 163, 224, 0.6) !default;
+$gray-400: rgba(138, 163, 224, 0.7) !default;
+$gray-500: #8AA3E0 !default;
 $black: #000 !default;
 
-// Color
-$blue: #C1FF72 !default;
+// Space Theme Colors
+$cosmic-purple: #9D4EDD !default;
+$nebula-cyan: #00F5FF !default;
+$space-navy: #0A0E27 !default;
+$stardust: #E0B0FF !default;
 
 // Main Colors
-$primary: $blue !default;
-$secondary: #1f2a2e !default;
+$primary: $nebula-cyan !default;
+$secondary: $space-navy !default;
 $light: $gray-100 !default;
 $muted: $gray-300 !default;
 $dark: $gray-500 !default;
@@ -143,7 +146,7 @@ $line-height-sm: 1.25 !default;
 $line-height-lg: 2 !default;
 
 // Body
-$body-bg: $white !default;
+$body-bg: $space-navy !default;
 $body-color: $gray-400 !default;
 
 // Heading
