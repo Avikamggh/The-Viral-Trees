@@ -31,6 +31,42 @@
   [style*="#00F5FF"] {
     color: #E5E7EB !important;  /* Silver grey */
   }
+
+      :root {
+    --bs-primary: #6B7280 !important;
+    --bs-primary-rgb: 107, 114, 128 !important;
+  }
+  
+  .bg-primary,
+  .btn-primary {
+    background-color: #6B7280 !important;
+  }
+  
+  .text-primary {
+    color: #6B7280 !important;
+  }
+  
+  .border-primary {
+    border-color: #6B7280 !important;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4B5563 !important;
+  }
+  
+  /* Override any inline green colors */
+  [style*="#9fef00"],
+  [style*="159, 239, 0"] {
+    color: #9CA3AF !important;
+  }
+  
+  /* Fix the round colored elements */
+  .round-36.bg-primary,
+  .round-45.bg-primary,
+  .round-52.bg-primary,
+  .round-64.bg-primary {
+    background-color: #6B7280 !important;
+  }
 </style>
 </head>
   
@@ -1226,4 +1262,5 @@
 </body>
 
 </html>
+
 
