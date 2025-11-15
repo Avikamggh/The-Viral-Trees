@@ -14,9 +14,24 @@
   * {
     cursor: url("assets/cursor.png") 12 12, auto;
   }
+
+
+
+  /* Override primary color throughout the site */
+  .bg-primary {
+    background-color: #6B7280 !important;  /* Space grey */
+  }
+  .text-primary {
+    color: #9CA3AF !important;  /* Medium grey */
+  }
+  .border-primary {
+    border-color: #6B7280 !important;  /* Space grey */
+  }
+  /* For cyan accents, change to silver */
+  [style*="#00F5FF"] {
+    color: #E5E7EB !important;  /* Silver grey */
+  }
 </style>
-
-
 </head>
   
 
@@ -1140,7 +1155,7 @@
     }
 
     .footer-link:hover {
-      color: #9fef00;
+      color: #D1D5DB;
     }
 
     .social-icon {
@@ -1149,15 +1164,15 @@
       justify-content: center;
       width: 42px;
       height: 42px;
-      background: rgba(159, 239, 0, 0.15);
-      color: #9fef00;
+      background: rgba(156, 163, 175, 0.15); 
+      color: #9CA3AF;
       border-radius: 50%;
       transition: all 0.3s ease;
       font-size: 20px;
     }
 
     .social-icon:hover {
-      background: rgba(159, 239, 0, 0.35);
+      background:  rgba(156, 163, 175, 0.35);
       transform: translateY(-3px);
     }
 
@@ -1211,3 +1226,4 @@
 </body>
 
 </html>
+
