@@ -67,6 +67,42 @@
   .round-64.bg-primary {
     background-color: #6B7280 !important;
   }
+  
+  /* Dropdown menu styles */
+  .header-menu .dropdown-menu {
+    background-color: #fff;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    margin-top: 10px;
+  }
+  
+  .header-menu .dropdown-item {
+    color: #374151;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .header-menu .dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #6B7280;
+    transform: translateX(5px);
+  }
+  
+  .header-menu .dropdown-header {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6B7280 !important;
+  }
+  
+  .header-menu .dropdown-divider {
+    margin: 10px 0;
+  }
+  
+  .header-menu .dropdown-toggle::after {
+    margin-left: 5px;
+  }
 </style>
 </head>
   
@@ -101,24 +137,38 @@
                           class="img-fluid animate-spin">Home</a>
                     </li>
                     <li class="header-item">
-                      <a href="about-us.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                      <a href="about.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
                           src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
                           class="img-fluid animate-spin">About</a>
                     </li>
                     <li class="header-item">
-                      <a href="projects.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                      <a href="mission-vision.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
                           src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
-                          class="img-fluid animate-spin">Programs</a>
+                          class="img-fluid animate-spin">Mission & Vision</a>
+                    </li>
+                    <li class="header-item dropdown">
+                      <a href="#" class="header-link hstack gap-2 fs-7 fw-bold text-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Opportunities</a>
+                      <ul class="dropdown-menu p-3">
+                        <li class="dropdown-header fw-bold text-primary mb-2">Ongoing</li>
+                        <li><a class="dropdown-item" href="programs.html">Programs</a></li>
+                        <li><a class="dropdown-item" href="courses.html">Courses</a></li>
+                        <li><a class="dropdown-item" href="fellowships.html">Fellowships</a></li>
+                        <li><a class="dropdown-item" href="internships.html">Internships</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li class="dropdown-header fw-bold text-primary mb-2">Upcoming</li>
+                        <li><a class="dropdown-item" href="panels.html">Panels</a></li>
+                        <li><a class="dropdown-item" href="competitions.html">Competitions</a></li>
+                        <li><a class="dropdown-item" href="events.html">Events</a></li>
+                        <li><a class="dropdown-item" href="conferences.html">Conferences</a></li>
+                        <li><a class="dropdown-item" href="workshops.html">Workshops</a></li>
+                      </ul>
                     </li>
                     <li class="header-item">
                       <a href="sectors.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
                           src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
                           class="img-fluid animate-spin">Sectors</a>
-                    </li>
-                    <li class="header-item">
-                      <a href="blog.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
-                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
-                          class="img-fluid animate-spin">Research</a>
                     </li>
                     <li class="header-item">
                       <a href="contact.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
@@ -1026,14 +1076,18 @@
         <div class="d-flex justify-content-center gap-5 flex-wrap">
           <ul class="list-unstyled text-start mb-0">
             <li><a href="index.html" class="footer-link">Home</a></li>
-            <li><a href="about-us.html" class="footer-link">About Us</a></li>
-            <li><a href="projects.html" class="footer-link">Our Programs</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="mission-vision.html" class="footer-link">Mission & Vision</a></li>
+            <li><a href="sectors.html" class="footer-link">Sectors</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
           </ul>
           <ul class="list-unstyled text-start mb-0">
-            <li><a href="sectors.html" class="footer-link">Sectors</a></li>
-            <li><a href="blog.html" class="footer-link">Research</a></li>
-            <li><a href="contact.html" class="footer-link">Contact</a></li>
-            <li><a href="#" class="footer-link">Careers</a></li>
+            <li><a href="#" class="footer-link fw-bold">Opportunities</a></li>
+            <li><a href="programs.html" class="footer-link">Programs</a></li>
+            <li><a href="courses.html" class="footer-link">Courses</a></li>
+            <li><a href="fellowships.html" class="footer-link">Fellowships</a></li>
+            <li><a href="internships.html" class="footer-link">Internships</a></li>
+            <li><a href="events.html" class="footer-link">Events</a></li>
           </ul>
         </div>
       </div>
