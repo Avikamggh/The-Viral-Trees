@@ -118,11 +118,13 @@
     background: white;
     border: 1px solid rgba(107, 114, 128, 0.2);
     border-radius: 15px;
-    padding: 2rem;
+    padding: 0;
     height: 100%;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   
   .sector-card:hover {
@@ -142,10 +144,53 @@
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
+    z-index: 2;
   }
   
   .sector-card:hover::before {
     transform: scaleX(1);
+  }
+
+  /* Sector image styles */
+  .sector-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.1), rgba(107, 114, 128, 0.2));
+    position: relative;
+  }
+
+  .sector-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+  }
+
+  .sector-card:hover .sector-image img {
+    transform: scale(1.08);
+  }
+
+  /* Image placeholder fallback */
+  .sector-image.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #9CA3AF;
+  }
+
+  /* Card content wrapper */
+  .sector-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sector-content p {
+    flex-grow: 1;
   }
   
   .sector-number {
@@ -335,300 +380,450 @@
           <!-- Sector 1: STEM -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">01</span>
-              <span class="category-badge">Foundation</span>
-              <h4 class="mb-3">STEM</h4>
-              <p class="text-dark text-opacity-70">Science, Technology, Engineering, Mathematics - The foundational pillar developing analytical reasoning, problem-solving, and innovation skills critical for aerospace.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/01-stem.jpg" alt="STEM" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">01</span>
+                <span class="category-badge">Foundation</span>
+                <h4 class="mb-3">STEM</h4>
+                <p class="text-dark text-opacity-70">Science, Technology, Engineering, Mathematics - The foundational pillar developing analytical reasoning, problem-solving, and innovation skills critical for aerospace.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 2: Space Industry -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">02</span>
-              <span class="category-badge">Business</span>
-              <h4 class="mb-3">Space Industry</h4>
-              <p class="text-dark text-opacity-70">Commercial, industrial, and entrepreneurial dimensions of the global space economy, from traditional aerospace to New Space ventures.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/02-space-industry.jpg" alt="Space Industry" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">02</span>
+                <span class="category-badge">Business</span>
+                <h4 class="mb-3">Space Industry</h4>
+                <p class="text-dark text-opacity-70">Commercial, industrial, and entrepreneurial dimensions of the global space economy, from traditional aerospace to New Space ventures.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 3: Space Navigation -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">03</span>
-              <span class="category-badge">Technology</span>
-              <h4 class="mb-3">Space Navigation</h4>
-              <p class="text-dark text-opacity-70">Movement and positioning of spacecraft, satellites, and rovers including orbital mechanics, trajectory planning, and GNSS systems.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/03-space-navigation.jpg" alt="Space Navigation" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">03</span>
+                <span class="category-badge">Technology</span>
+                <h4 class="mb-3">Space Navigation</h4>
+                <p class="text-dark text-opacity-70">Movement and positioning of spacecraft, satellites, and rovers including orbital mechanics, trajectory planning, and GNSS systems.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 4: Space Communications -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">04</span>
-              <span class="category-badge">Technology</span>
-              <h4 class="mb-3">Space Communications</h4>
-              <p class="text-dark text-opacity-70">Science and technology of transmitting data between spacecraft, satellites, and Earth using radio, optical, and quantum systems.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/04-space-communications.jpg" alt="Space Communications" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">04</span>
+                <span class="category-badge">Technology</span>
+                <h4 class="mb-3">Space Communications</h4>
+                <p class="text-dark text-opacity-70">Science and technology of transmitting data between spacecraft, satellites, and Earth using radio, optical, and quantum systems.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 5: Space Technology -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">05</span>
-              <span class="category-badge">Engineering</span>
-              <h4 class="mb-3">Space Technology</h4>
-              <p class="text-dark text-opacity-70">Tools, machines, and systems enabling exploration including propulsion, robotics, autonomous systems, sensors, and materials.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/05-space-technology.jpg" alt="Space Technology" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">05</span>
+                <span class="category-badge">Engineering</span>
+                <h4 class="mb-3">Space Technology</h4>
+                <p class="text-dark text-opacity-70">Tools, machines, and systems enabling exploration including propulsion, robotics, autonomous systems, sensors, and materials.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 6: Space Medicine -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">06</span>
-              <span class="category-badge">Life Sciences</span>
-              <h4 class="mb-3">Space Medicine</h4>
-              <p class="text-dark text-opacity-70">How space conditions affect human health, focusing on microgravity, radiation, nutrition, physiology, and mental well-being.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/06-space-medicine.jpg" alt="Space Medicine" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">06</span>
+                <span class="category-badge">Life Sciences</span>
+                <h4 class="mb-3">Space Medicine</h4>
+                <p class="text-dark text-opacity-70">How space conditions affect human health, focusing on microgravity, radiation, nutrition, physiology, and mental well-being.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 7: Space Pharmacy -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">07</span>
-              <span class="category-badge">Life Sciences</span>
-              <h4 class="mb-3">Space Pharmacy</h4>
-              <p class="text-dark text-opacity-70">Development, preservation, and delivery of medicines in space including drug stability, biomanufacturing, and pharmaceutical systems.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/07-space-pharmacy.jpg" alt="Space Pharmacy" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">07</span>
+                <span class="category-badge">Life Sciences</span>
+                <h4 class="mb-3">Space Pharmacy</h4>
+                <p class="text-dark text-opacity-70">Development, preservation, and delivery of medicines in space including drug stability, biomanufacturing, and pharmaceutical systems.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 8: Space Agriculture -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">08</span>
-              <span class="category-badge">Sustainability</span>
-              <h4 class="mb-3">Space Agriculture</h4>
-              <p class="text-dark text-opacity-70">Farming methods for extraterrestrial environments including hydroponics, aeroponics, and closed-loop ecological systems.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/08-space-agriculture.jpg" alt="Space Agriculture" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">08</span>
+                <span class="category-badge">Sustainability</span>
+                <h4 class="mb-3">Space Agriculture</h4>
+                <p class="text-dark text-opacity-70">Farming methods for extraterrestrial environments including hydroponics, aeroponics, and closed-loop ecological systems.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 9: Space Architecture & Habitat Design -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">09</span>
-              <span class="category-badge">Design</span>
-              <h4 class="mb-3">Space Architecture & Habitat Design</h4>
-              <p class="text-dark text-opacity-70">Design of human habitats in extreme environments merging engineering, architecture, and human-centered sustainability.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/09-space-architecture.jpg" alt="Space Architecture" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">09</span>
+                <span class="category-badge">Design</span>
+                <h4 class="mb-3">Space Architecture & Habitat Design</h4>
+                <p class="text-dark text-opacity-70">Design of human habitats in extreme environments merging engineering, architecture, and human-centered sustainability.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 10: Space Environment -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">10</span>
-              <span class="category-badge">Environment</span>
-              <h4 class="mb-3">Space Environment</h4>
-              <p class="text-dark text-opacity-70">Unique environmental challenges including radiation, microgravity, vacuum conditions, and orbital debris management.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/10-space-environment.jpg" alt="Space Environment" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">10</span>
+                <span class="category-badge">Environment</span>
+                <h4 class="mb-3">Space Environment</h4>
+                <p class="text-dark text-opacity-70">Unique environmental challenges including radiation, microgravity, vacuum conditions, and orbital debris management.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 11: Sustainability & Space Policy -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">11</span>
-              <span class="category-badge">Policy</span>
-              <h4 class="mb-3">Sustainability & Space Policy</h4>
-              <p class="text-dark text-opacity-70">Ethical, legal, and political frameworks for sustainable exploration including treaties, governance, and resource access.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/11-space-policy.jpg" alt="Space Policy" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">11</span>
+                <span class="category-badge">Policy</span>
+                <h4 class="mb-3">Sustainability & Space Policy</h4>
+                <p class="text-dark text-opacity-70">Ethical, legal, and political frameworks for sustainable exploration including treaties, governance, and resource access.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 12: Earth Observation & Climate Science -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">12</span>
-              <span class="category-badge">Earth Sciences</span>
-              <h4 class="mb-3">Earth Observation & Climate Science</h4>
-              <p class="text-dark text-opacity-70">Satellites and space-based technologies monitoring Earth's systems including climate, land use, and natural disasters.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/12-earth-observation.jpg" alt="Earth Observation" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">12</span>
+                <span class="category-badge">Earth Sciences</span>
+                <h4 class="mb-3">Earth Observation & Climate Science</h4>
+                <p class="text-dark text-opacity-70">Satellites and space-based technologies monitoring Earth's systems including climate, land use, and natural disasters.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 13: Satellite Design & CubeSats -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">13</span>
-              <span class="category-badge">Engineering</span>
-              <h4 class="mb-3">Satellite Design & CubeSats</h4>
-              <p class="text-dark text-opacity-70">Design, construction, and operation of small satellites democratizing access to space research and innovation.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/13-satellite-design.jpg" alt="Satellite Design" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">13</span>
+                <span class="category-badge">Engineering</span>
+                <h4 class="mb-3">Satellite Design & CubeSats</h4>
+                <p class="text-dark text-opacity-70">Design, construction, and operation of small satellites democratizing access to space research and innovation.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 14: Planetary Defense & Asteroid Science -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">14</span>
-              <span class="category-badge">Defense</span>
-              <h4 class="mb-3">Planetary Defense & Asteroid Science</h4>
-              <p class="text-dark text-opacity-70">Detecting, tracking, and mitigating threats from near-Earth objects while studying asteroids as scientific resources.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/14-planetary-defense.jpg" alt="Planetary Defense" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">14</span>
+                <span class="category-badge">Defense</span>
+                <h4 class="mb-3">Planetary Defense & Asteroid Science</h4>
+                <p class="text-dark text-opacity-70">Detecting, tracking, and mitigating threats from near-Earth objects while studying asteroids as scientific resources.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 15: Space Law, Policy & Ethics -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">15</span>
-              <span class="category-badge">Governance</span>
-              <h4 class="mb-3">Space Law, Policy & Ethics</h4>
-              <p class="text-dark text-opacity-70">Legal, regulatory, and ethical frameworks governing outer space including treaties, ownership, and equitable access.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/15-space-law.jpg" alt="Space Law" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">15</span>
+                <span class="category-badge">Governance</span>
+                <h4 class="mb-3">Space Law, Policy & Ethics</h4>
+                <p class="text-dark text-opacity-70">Legal, regulatory, and ethical frameworks governing outer space including treaties, ownership, and equitable access.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 16: Space Economics & Business Innovation -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">16</span>
-              <span class="category-badge">Business</span>
-              <h4 class="mb-3">Space Economics & Business Innovation</h4>
-              <p class="text-dark text-opacity-70">Financial and entrepreneurial dimensions from launch costs to emerging markets like lunar mining and tourism.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/16-space-economics.jpg" alt="Space Economics" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">16</span>
+                <span class="category-badge">Business</span>
+                <h4 class="mb-3">Space Economics & Business Innovation</h4>
+                <p class="text-dark text-opacity-70">Financial and entrepreneurial dimensions from launch costs to emerging markets like lunar mining and tourism.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 17: AI & Data Science in Space -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">17</span>
-              <span class="category-badge">Technology</span>
-              <h4 class="mb-3">AI & Data Science in Space Exploration</h4>
-              <p class="text-dark text-opacity-70">Artificial intelligence, machine learning, and data analytics for mission planning, discovery, and autonomous operations.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/17-ai-data-science.jpg" alt="AI & Data Science" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">17</span>
+                <span class="category-badge">Technology</span>
+                <h4 class="mb-3">AI & Data Science in Space Exploration</h4>
+                <p class="text-dark text-opacity-70">Artificial intelligence, machine learning, and data analytics for mission planning, discovery, and autonomous operations.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 18: Space Arts & Science Communication -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">18</span>
-              <span class="category-badge">Communication</span>
-              <h4 class="mb-3">Space Arts & Science Communication</h4>
-              <p class="text-dark text-opacity-70">Art, storytelling, and media to communicate space science in engaging, human-centered ways to global audiences.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/18-space-arts.jpg" alt="Space Arts" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">18</span>
+                <span class="category-badge">Communication</span>
+                <h4 class="mb-3">Space Arts & Science Communication</h4>
+                <p class="text-dark text-opacity-70">Art, storytelling, and media to communicate space science in engaging, human-centered ways to global audiences.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 19: Materials Science & Advanced Manufacturing -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">19</span>
-              <span class="category-badge">Engineering</span>
-              <h4 class="mb-3">Materials Science & Advanced Manufacturing</h4>
-              <p class="text-dark text-opacity-70">Developing materials for extreme conditions and advanced methods like 3D printing for on-site construction.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/19-materials-science.jpg" alt="Materials Science" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">19</span>
+                <span class="category-badge">Engineering</span>
+                <h4 class="mb-3">Materials Science & Advanced Manufacturing</h4>
+                <p class="text-dark text-opacity-70">Developing materials for extreme conditions and advanced methods like 3D printing for on-site construction.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 20: Deep Space Missions & Interstellar Exploration -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">20</span>
-              <span class="category-badge">Exploration</span>
-              <h4 class="mb-3">Deep Space Missions & Interstellar Exploration</h4>
-              <p class="text-dark text-opacity-70">Missions beyond Earth orbit including travel to outer solar system, icy moons, and interstellar probes.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/20-deep-space.jpg" alt="Deep Space Missions" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">20</span>
+                <span class="category-badge">Exploration</span>
+                <h4 class="mb-3">Deep Space Missions & Interstellar Exploration</h4>
+                <p class="text-dark text-opacity-70">Missions beyond Earth orbit including travel to outer solar system, icy moons, and interstellar probes.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 21: Astrobiology & Life Sciences -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">21</span>
-              <span class="category-badge">Life Sciences</span>
-              <h4 class="mb-3">Astrobiology & Life Sciences</h4>
-              <p class="text-dark text-opacity-70">Origins, evolution, and possibility of life in the universe combining biology, chemistry, and astronomy.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/21-astrobiology.jpg" alt="Astrobiology" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">21</span>
+                <span class="category-badge">Life Sciences</span>
+                <h4 class="mb-3">Astrobiology & Life Sciences</h4>
+                <p class="text-dark text-opacity-70">Origins, evolution, and possibility of life in the universe combining biology, chemistry, and astronomy.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 22: Astrophysics & Astronomy -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">22</span>
-              <span class="category-badge">Science</span>
-              <h4 class="mb-3">Astrophysics & Astronomy</h4>
-              <p class="text-dark text-opacity-70">Physics of the universe from galaxies and stars to black holes and cosmology through observation and study.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/22-astrophysics.jpg" alt="Astrophysics" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">22</span>
+                <span class="category-badge">Science</span>
+                <h4 class="mb-3">Astrophysics & Astronomy</h4>
+                <p class="text-dark text-opacity-70">Physics of the universe from galaxies and stars to black holes and cosmology through observation and study.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 23: Planetary Science & Geology -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">23</span>
-              <span class="category-badge">Science</span>
-              <h4 class="mb-3">Planetary Science & Geology</h4>
-              <p class="text-dark text-opacity-70">Structure, composition, and processes of planets, moons, and asteroids combining geology, chemistry, and physics.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/23-planetary-science.jpg" alt="Planetary Science" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">23</span>
+                <span class="category-badge">Science</span>
+                <h4 class="mb-3">Planetary Science & Geology</h4>
+                <p class="text-dark text-opacity-70">Structure, composition, and processes of planets, moons, and asteroids combining geology, chemistry, and physics.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 24: GNSS & GIS -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">24</span>
-              <span class="category-badge">Technology</span>
-              <h4 class="mb-3">GNSS & GIS</h4>
-              <p class="text-dark text-opacity-70">Global Navigation Satellite Systems and Geographic Information Systems for positioning, navigation, and mapping.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/24-gnss-gis.jpg" alt="GNSS & GIS" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">24</span>
+                <span class="category-badge">Technology</span>
+                <h4 class="mb-3">GNSS & GIS</h4>
+                <p class="text-dark text-opacity-70">Global Navigation Satellite Systems and Geographic Information Systems for positioning, navigation, and mapping.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 25: Future Human Society in Space -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">25</span>
-              <span class="category-badge">Society</span>
-              <h4 class="mb-3">Future Human Society in Space</h4>
-              <p class="text-dark text-opacity-70">How human communities will live, work, and govern in off-Earth environments like lunar colonies or Martian cities.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/25-human-society.jpg" alt="Human Society in Space" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">25</span>
+                <span class="category-badge">Society</span>
+                <h4 class="mb-3">Future Human Society in Space</h4>
+                <p class="text-dark text-opacity-70">How human communities will live, work, and govern in off-Earth environments like lunar colonies or Martian cities.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 26: Cybersecurity in Space Infrastructure -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">26</span>
-              <span class="category-badge">Security</span>
-              <h4 class="mb-3">Cybersecurity in Space Infrastructure</h4>
-              <p class="text-dark text-opacity-70">Protection of satellites, spacecraft, and communication networks from cyberattacks and data breaches.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/26-cybersecurity.jpg" alt="Cybersecurity" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">26</span>
+                <span class="category-badge">Security</span>
+                <h4 class="mb-3">Cybersecurity in Space Infrastructure</h4>
+                <p class="text-dark text-opacity-70">Protection of satellites, spacecraft, and communication networks from cyberattacks and data breaches.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 27: Space Psychology & Human Factors -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">27</span>
-              <span class="category-badge">Human Factors</span>
-              <h4 class="mb-3">Space Psychology & Human Factors</h4>
-              <p class="text-dark text-opacity-70">Human behavior, mental health, and group dynamics in space missions focusing on isolation, confinement, and stress.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/27-space-psychology.jpg" alt="Space Psychology" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">27</span>
+                <span class="category-badge">Human Factors</span>
+                <h4 class="mb-3">Space Psychology & Human Factors</h4>
+                <p class="text-dark text-opacity-70">Human behavior, mental health, and group dynamics in space missions focusing on isolation, confinement, and stress.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 28: Space Energy & Power Systems -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">28</span>
-              <span class="category-badge">Energy</span>
-              <h4 class="mb-3">Space Energy & Power Systems</h4>
-              <p class="text-dark text-opacity-70">How missions and settlements generate, store, and use energy including solar, nuclear, and wireless power systems.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/28-space-energy.jpg" alt="Space Energy" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">28</span>
+                <span class="category-badge">Energy</span>
+                <h4 class="mb-3">Space Energy & Power Systems</h4>
+                <p class="text-dark text-opacity-70">How missions and settlements generate, store, and use energy including solar, nuclear, and wireless power systems.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 29: Lunar Economy & Resource Utilization -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">29</span>
-              <span class="category-badge">Resources</span>
-              <h4 class="mb-3">Lunar Economy & Resource Utilization</h4>
-              <p class="text-dark text-opacity-70">Using lunar resources (water ice, regolith, metals) for human settlement and industrial growth through ISRU.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/29-lunar-economy.jpg" alt="Lunar Economy" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">29</span>
+                <span class="category-badge">Resources</span>
+                <h4 class="mb-3">Lunar Economy & Resource Utilization</h4>
+                <p class="text-dark text-opacity-70">Using lunar resources (water ice, regolith, metals) for human settlement and industrial growth through ISRU.</p>
+              </div>
             </div>
           </div>
 
           <!-- Sector 30: Philosophy of Space & Cultural Heritage -->
           <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
             <div class="sector-card">
-              <span class="sector-number">30</span>
-              <span class="category-badge">Culture</span>
-              <h4 class="mb-3">Philosophy of Space & Cultural Heritage</h4>
-              <p class="text-dark text-opacity-70">Cultural, ethical, and philosophical questions of humanity's expansion including heritage preservation and identity.</p>
+              <div class="sector-image">
+                <img src="../assets/images/sectors/30-philosophy-space.jpg" alt="Philosophy of Space" loading="lazy">
+              </div>
+              <div class="sector-content">
+                <span class="sector-number">30</span>
+                <span class="category-badge">Culture</span>
+                <h4 class="mb-3">Philosophy of Space & Cultural Heritage</h4>
+                <p class="text-dark text-opacity-70">Cultural, ethical, and philosophical questions of humanity's expansion including heritage preservation and identity.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -810,4 +1005,3 @@
 </body>
 
 </html>
-
