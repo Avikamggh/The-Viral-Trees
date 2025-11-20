@@ -68,7 +68,7 @@
     background-color: #6B7280 !important;
   }
   
-  /* Dropdown menu styles */
+  /* Dropdown menu styles (kept for reference but not used with current submenu) */
   .header-menu .dropdown-menu {
     background-color: #fff;
     border: 1px solid #e5e7eb;
@@ -77,31 +77,81 @@
     margin-top: 10px;
   }
   
-  .header-menu .dropdown-item {
-    color: #374151;
-    padding: 8px 16px;
+  /* Custom submenu styles */
+  .has-submenu {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .has-submenu::after {
+    content: "▼";
+    font-size: 10px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+  }
+  
+  .has-submenu.show::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  
+  .submenu {
+    display: none;
+    padding-left: 20px;
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 2px solid rgba(107, 114, 128, 0.2);
+  }
+  
+  /* Scrollbar styling */
+  .submenu::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .submenu::-webkit-scrollbar-track {
+    background: rgba(107, 114, 128, 0.1);
+    border-radius: 2px;
+  }
+  
+  .submenu::-webkit-scrollbar-thumb {
+    background: rgba(107, 114, 128, 0.4);
+    border-radius: 2px;
+  }
+  
+  .submenu::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.6);
+  }
+  
+  .submenu.show {
+    display: block;
+  }
+  
+  /* Compact spacing for submenu items */
+  .submenu li {
+    margin-bottom: 8px !important;
+  }
+  
+  .submenu .fw-bold {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+    margin-top: 8px !important;
+  }
+  
+  .submenu a {
     transition: all 0.3s ease;
+    display: block;
+    padding: 3px 0;
+    font-size: 14px !important;
   }
   
-  .header-menu .dropdown-item:hover {
-    background-color: #f3f4f6;
-    color: #6B7280;
-    transform: translateX(5px);
-  }
-  
-  .header-menu .dropdown-header {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  .submenu a:hover {
     color: #6B7280 !important;
-  }
-  
-  .header-menu .dropdown-divider {
-    margin: 10px 0;
-  }
-  
-  .header-menu .dropdown-toggle::after {
-    margin-left: 5px;
+    transform: translateX(5px);
+    display: inline-block;
   }
 </style>
 </head>
@@ -146,23 +196,23 @@
                           src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
                           class="img-fluid animate-spin">Mission & Vision</a>
                     </li>
-                    <li class="header-item dropdown">
-                      <a href="#" class="header-link hstack gap-2 fs-7 fw-bold text-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img
+                    <li class="header-item">
+                      <a href="#" class="header-link hstack gap-2 fs-7 fw-bold text-dark has-submenu" onclick="toggleSubmenu(event)"><img
                           src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
                           class="img-fluid animate-spin">Opportunities</a>
-                      <ul class="dropdown-menu p-3">
-                        <li class="dropdown-header fw-bold text-primary mb-2">Ongoing</li>
-                        <li><a class="dropdown-item" href="programs.html">Programs</a></li>
-                        <li><a class="dropdown-item" href="courses.html">Courses</a></li>
-                        <li><a class="dropdown-item" href="fellowships.html">Fellowships</a></li>
-                        <li><a class="dropdown-item" href="internships.html">Internships</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li class="dropdown-header fw-bold text-primary mb-2">Upcoming</li>
-                        <li><a class="dropdown-item" href="panels.html">Panels</a></li>
-                        <li><a class="dropdown-item" href="competitions.html">Competitions</a></li>
-                        <li><a class="dropdown-item" href="events.html">Events</a></li>
-                        <li><a class="dropdown-item" href="conferences.html">Conferences</a></li>
-                        <li><a class="dropdown-item" href="workshops.html">Workshops</a></li>
+                      <ul class="submenu list-unstyled ps-4 mt-2">
+                        <li class="fw-bold text-primary fs-8">Ongoing</li>
+                        <li><a class="text-dark text-decoration-none" href="programs.html">Programs</a></li>
+                        <li><a class="text-dark text-decoration-none" href="courses.html">Courses</a></li>
+                        <li><a class="text-dark text-decoration-none" href="fellowships.html">Fellowships</a></li>
+                        <li><a class="text-dark text-decoration-none" href="internships.html">Internships</a></li>
+                        <li style="margin: 8px 0;"><hr style="margin: 0; border-color: #e5e7eb;"></li>
+                        <li class="fw-bold text-primary fs-8">Upcoming</li>
+                        <li><a class="text-dark text-decoration-none" href="panels.html">Panels</a></li>
+                        <li><a class="text-dark text-decoration-none" href="competitions.html">Competitions</a></li>
+                        <li><a class="text-dark text-decoration-none" href="events.html">Events</a></li>
+                        <li><a class="text-dark text-decoration-none" href="conferences.html">Conferences</a></li>
+                        <li><a class="text-dark text-decoration-none" href="workshops.html">Workshops</a></li>
                       </ul>
                     </li>
                     <li class="header-item">
@@ -1195,6 +1245,21 @@
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 <script src="../assets/js/liquid-effect-pro.js"></script>
 
+<script>
+  function toggleSubmenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const link = event.currentTarget;
+    const submenu = link.nextElementSibling;
+    
+    if (submenu && submenu.classList.contains('submenu')) {
+      submenu.classList.toggle('show');
+      link.classList.toggle('show');
+    }
+  }
+</script>
+
 
 
                     
@@ -1202,5 +1267,3 @@
 </body>
 
 </html>
-
-
