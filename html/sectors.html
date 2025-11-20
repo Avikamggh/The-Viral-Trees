@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHE ORBITS - Sectors | 30 Pathways to Space & STEM</title>
+  <link rel="shortcut icon" type="image/png" href="../assets/images/logos/logo-dark.svg" />
+  <link rel="stylesheet" href="../assets/libs/owl.carousel/dist/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="../assets/libs/aos-master/dist/aos.css">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+  * {
+    cursor: url("assets/cursor.png") 12 12, auto;
+  }
+  
+  /* Override primary colors to grey */
+  :root {
+    --bs-primary: #6B7280 !important;
+    --bs-primary-rgb: 107, 114, 128 !important;
+  }
+  
+  .bg-primary,
+  .btn-primary {
+    background-color: #6B7280 !important;
+  }
+  
+  .text-primary {
+    color: #6B7280 !important;
+  }
+  
+  .border-primary {
+    border-color: #6B7280 !important;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4B5563 !important;
+  }
+  
+  /* Custom submenu styles */
+  .has-submenu {
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .has-submenu::after {
+    content: "▼";
+    font-size: 10px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s;
+  }
+  
+  .has-submenu.show::after {
+    transform: translateY(-50%) rotate(180deg);
+  }
+  
+  .submenu {
+    display: none;
+    padding-left: 20px;
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-left: 2px solid rgba(107, 114, 128, 0.2);
+  }
+  
+  /* Scrollbar styling */
+  .submenu::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .submenu::-webkit-scrollbar-track {
+    background: rgba(107, 114, 128, 0.1);
+    border-radius: 2px;
+  }
+  
+  .submenu::-webkit-scrollbar-thumb {
+    background: rgba(107, 114, 128, 0.4);
+    border-radius: 2px;
+  }
+  
+  .submenu::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.6);
+  }
+  
+  .submenu.show {
+    display: block;
+  }
+  
+  /* Compact spacing for submenu items */
+  .submenu li {
+    margin-bottom: 8px !important;
+  }
+  
+  .submenu .fw-bold {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+    margin-top: 8px !important;
+  }
+  
+  .submenu a {
+    transition: all 0.3s ease;
+    display: block;
+    padding: 3px 0;
+    font-size: 14px !important;
+  }
+  
+  .submenu a:hover {
+    color: #6B7280 !important;
+    transform: translateX(5px);
+  }
+  
+  /* Sector card styles */
+  .sector-card {
+    background: white;
+    border: 1px solid rgba(107, 114, 128, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    height: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .sector-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: #6B7280;
+  }
+  
+  .sector-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #6B7280, #9CA3AF);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  
+  .sector-card:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .sector-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(107, 114, 128, 0.1);
+    color: #6B7280;
+    font-weight: bold;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    font-size: 14px;
+  }
+  
+  .sector-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, rgba(107, 114, 128, 0.1), rgba(107, 114, 128, 0.2));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(107, 114, 128, 0.1);
+    color: #6B7280;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="header border-4 border-primary border-top position-fixed start-0 top-0 w-100">
+    <div class="container">
+      <div class="header-wrapper d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-4 ms-auto">
+
+          <div class="btn-group">
+            <button
+              class="btn btn-secondary toggle-menu round-45 p-2 d-flex align-items-center justify-content-center bg-white rounded-circle"
+              type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              <iconify-icon icon="solar:hamburger-menu-line-duotone" class="menu-icon fs-8 text-dark"></iconify-icon>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end p-4">
+              <div class="d-flex flex-column gap-6">
+                <div class="hstack justify-content-between border-bottom pb-6">
+                  <p class="mb-0 fs-5 text-dark">Menu</p>
+                  <button type="button" class="btn-close opacity-75" aria-label="Close"></button>
+                </div>
+                <div class="d-flex flex-column gap-3">
+                  <ul class="header-menu list-unstyled mb-0 d-flex flex-column gap-2">
+                    <li class="header-item">
+                      <a href="index.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Home</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="about.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">About</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="mission-vision.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Mission & Vision</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="#" class="header-link hstack gap-2 fs-7 fw-bold text-dark has-submenu" onclick="toggleSubmenu(event)"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Opportunities</a>
+                      <ul class="submenu list-unstyled ps-4 mt-2">
+                        <li class="fw-bold text-primary fs-8">Ongoing</li>
+                        <li><a class="text-dark text-decoration-none" href="programs.html">Programs</a></li>
+                        <li><a class="text-dark text-decoration-none" href="courses.html">Courses</a></li>
+                        <li><a class="text-dark text-decoration-none" href="fellowships.html">Fellowships</a></li>
+                        <li><a class="text-dark text-decoration-none" href="internships.html">Internships</a></li>
+                        <li style="margin: 8px 0;"><hr style="margin: 0; border-color: #e5e7eb;"></li>
+                        <li class="fw-bold text-primary fs-8">Upcoming</li>
+                        <li><a class="text-dark text-decoration-none" href="panels.html">Panels</a></li>
+                        <li><a class="text-dark text-decoration-none" href="competitions.html">Competitions</a></li>
+                        <li><a class="text-dark text-decoration-none" href="events.html">Events</a></li>
+                        <li><a class="text-dark text-decoration-none" href="conferences.html">Conferences</a></li>
+                        <li><a class="text-dark text-decoration-none" href="workshops.html">Workshops</a></li>
+                      </ul>
+                    </li>
+                    <li class="header-item">
+                      <a href="sectors.html" aria-current="true"
+                        class="header-link active hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Sectors</a>
+                    </li>
+                    <li class="header-item">
+                      <a href="contact.html" class="header-link hstack gap-2 fs-7 fw-bold text-dark"><img
+                          src="../assets/images/svgs/secondary-leaf.svg" alt="" width="20" height="20"
+                          class="img-fluid animate-spin">Contact</a>
+                    </li>
+                  </ul>
+                  
+                </div>
+                
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!--  Page Wrapper -->
+  <div class="page-wrapper overflow-hidden">
+
+    <!--  Banner Section -->
+    <section class="banner-section banner-inner-section position-relative overflow-hidden d-flex align-items-end"
+      style="background: linear-gradient(135deg, #374151 0%, #6B7280 100%);">
+      <div class="container">
+        <div class="d-flex flex-column gap-4 pb-5 pb-xl-10 position-relative z-1">
+          <div class="row align-items-center">
+            <div class="col-xl-6">
+              <div class="d-flex align-items-center gap-4" data-aos="fade-up" data-aos-delay="100"
+                data-aos-duration="1000">
+                <img src="../assets/images/svgs/primary-leaf.svg" alt="" class="img-fluid animate-spin">
+                <p class="mb-0 text-white fs-5 text-opacity-70">Explore <span class="text-white">30 interdisciplinary pathways</span> where girls can lead humanity's journey beyond Earth</p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-end gap-3" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <h1 class="mb-0 fs-16 text-white lh-1">Space & STEM Sectors</h1>
+            <a href="javascript:void(0)" class="p-1 ps-7 bg-white rounded-pill">
+              <span class="bg-primary round-52 rounded-circle d-flex align-items-center justify-content-center">
+                <iconify-icon icon="lucide:arrow-up-right" class="fs-8 text-white"></iconify-icon>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sectors Overview Section -->
+    <section class="sectors-overview py-5 py-lg-11 py-xl-12 bg-light-gray">
+      <div class="container">
+        <div class="row gap-7 gap-xl-0 mb-8">
+          <div class="col-xl-4 col-xxl-4">
+            <div class="d-flex align-items-center gap-7 py-2" data-aos="fade-right" data-aos-delay="100"
+              data-aos-duration="1000">
+              <span
+                class="round-36 flex-shrink-0 text-dark rounded-circle bg-primary hstack justify-content-center fw-medium">30</span>
+              <hr class="border-line">
+              <span class="badge text-bg-dark">Pathways to Space</span>
+            </div>
+          </div>
+          <div class="col-xl-8 col-xxl-7">
+            <div class="d-flex flex-column gap-6" data-aos="fade-up" data-aos-delay="100"
+              data-aos-duration="1000">
+              <h2 class="mb-0">Comprehensive Space & STEM Education</h2>
+              <p class="fs-5 mb-0">At SHE ORBITS, we believe the future of space must be inclusive, interdisciplinary, and global. Our 30 sectors provide girls aged 13-25 with diverse pathways to become innovators, researchers, and decision-makers shaping humanity's cosmic journey.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--  All Sectors Grid Section -->
+    <section class="all-sectors py-5 py-lg-11 py-xl-12">
+      <div class="container">
+        <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+          <span class="badge text-bg-dark mb-3">Complete Curriculum</span>
+          <h2 class="mb-4">30 Sectors of Space Innovation</h2>
+          <p class="fs-5 text-muted mb-0">From STEM foundations to interstellar exploration, discover your path to the stars</p>
+        </div>
+        
+        <div class="row g-4">
+          <!-- Sector 1: STEM -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">01</span>
+              <span class="category-badge">Foundation</span>
+              <h4 class="mb-3">STEM</h4>
+              <p class="text-dark text-opacity-70">Science, Technology, Engineering, Mathematics - The foundational pillar developing analytical reasoning, problem-solving, and innovation skills critical for aerospace.</p>
+            </div>
+          </div>
+
+          <!-- Sector 2: Space Industry -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">02</span>
+              <span class="category-badge">Business</span>
+              <h4 class="mb-3">Space Industry</h4>
+              <p class="text-dark text-opacity-70">Commercial, industrial, and entrepreneurial dimensions of the global space economy, from traditional aerospace to New Space ventures.</p>
+            </div>
+          </div>
+
+          <!-- Sector 3: Space Navigation -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">03</span>
+              <span class="category-badge">Technology</span>
+              <h4 class="mb-3">Space Navigation</h4>
+              <p class="text-dark text-opacity-70">Movement and positioning of spacecraft, satellites, and rovers including orbital mechanics, trajectory planning, and GNSS systems.</p>
+            </div>
+          </div>
+
+          <!-- Sector 4: Space Communications -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">04</span>
+              <span class="category-badge">Technology</span>
+              <h4 class="mb-3">Space Communications</h4>
+              <p class="text-dark text-opacity-70">Science and technology of transmitting data between spacecraft, satellites, and Earth using radio, optical, and quantum systems.</p>
+            </div>
+          </div>
+
+          <!-- Sector 5: Space Technology -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">05</span>
+              <span class="category-badge">Engineering</span>
+              <h4 class="mb-3">Space Technology</h4>
+              <p class="text-dark text-opacity-70">Tools, machines, and systems enabling exploration including propulsion, robotics, autonomous systems, sensors, and materials.</p>
+            </div>
+          </div>
+
+          <!-- Sector 6: Space Medicine -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">06</span>
+              <span class="category-badge">Life Sciences</span>
+              <h4 class="mb-3">Space Medicine</h4>
+              <p class="text-dark text-opacity-70">How space conditions affect human health, focusing on microgravity, radiation, nutrition, physiology, and mental well-being.</p>
+            </div>
+          </div>
+
+          <!-- Sector 7: Space Pharmacy -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">07</span>
+              <span class="category-badge">Life Sciences</span>
+              <h4 class="mb-3">Space Pharmacy</h4>
+              <p class="text-dark text-opacity-70">Development, preservation, and delivery of medicines in space including drug stability, biomanufacturing, and pharmaceutical systems.</p>
+            </div>
+          </div>
+
+          <!-- Sector 8: Space Agriculture -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">08</span>
+              <span class="category-badge">Sustainability</span>
+              <h4 class="mb-3">Space Agriculture</h4>
+              <p class="text-dark text-opacity-70">Farming methods for extraterrestrial environments including hydroponics, aeroponics, and closed-loop ecological systems.</p>
+            </div>
+          </div>
+
+          <!-- Sector 9: Space Architecture & Habitat Design -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">09</span>
+              <span class="category-badge">Design</span>
+              <h4 class="mb-3">Space Architecture & Habitat Design</h4>
+              <p class="text-dark text-opacity-70">Design of human habitats in extreme environments merging engineering, architecture, and human-centered sustainability.</p>
+            </div>
+          </div>
+
+          <!-- Sector 10: Space Environment -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">10</span>
+              <span class="category-badge">Environment</span>
+              <h4 class="mb-3">Space Environment</h4>
+              <p class="text-dark text-opacity-70">Unique environmental challenges including radiation, microgravity, vacuum conditions, and orbital debris management.</p>
+            </div>
+          </div>
+
+          <!-- Sector 11: Sustainability & Space Policy -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">11</span>
+              <span class="category-badge">Policy</span>
+              <h4 class="mb-3">Sustainability & Space Policy</h4>
+              <p class="text-dark text-opacity-70">Ethical, legal, and political frameworks for sustainable exploration including treaties, governance, and resource access.</p>
+            </div>
+          </div>
+
+          <!-- Sector 12: Earth Observation & Climate Science -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">12</span>
+              <span class="category-badge">Earth Sciences</span>
+              <h4 class="mb-3">Earth Observation & Climate Science</h4>
+              <p class="text-dark text-opacity-70">Satellites and space-based technologies monitoring Earth's systems including climate, land use, and natural disasters.</p>
+            </div>
+          </div>
+
+          <!-- Sector 13: Satellite Design & CubeSats -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">13</span>
+              <span class="category-badge">Engineering</span>
+              <h4 class="mb-3">Satellite Design & CubeSats</h4>
+              <p class="text-dark text-opacity-70">Design, construction, and operation of small satellites democratizing access to space research and innovation.</p>
+            </div>
+          </div>
+
+          <!-- Sector 14: Planetary Defense & Asteroid Science -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">14</span>
+              <span class="category-badge">Defense</span>
+              <h4 class="mb-3">Planetary Defense & Asteroid Science</h4>
+              <p class="text-dark text-opacity-70">Detecting, tracking, and mitigating threats from near-Earth objects while studying asteroids as scientific resources.</p>
+            </div>
+          </div>
+
+          <!-- Sector 15: Space Law, Policy & Ethics -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">15</span>
+              <span class="category-badge">Governance</span>
+              <h4 class="mb-3">Space Law, Policy & Ethics</h4>
+              <p class="text-dark text-opacity-70">Legal, regulatory, and ethical frameworks governing outer space including treaties, ownership, and equitable access.</p>
+            </div>
+          </div>
+
+          <!-- Sector 16: Space Economics & Business Innovation -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">16</span>
+              <span class="category-badge">Business</span>
+              <h4 class="mb-3">Space Economics & Business Innovation</h4>
+              <p class="text-dark text-opacity-70">Financial and entrepreneurial dimensions from launch costs to emerging markets like lunar mining and tourism.</p>
+            </div>
+          </div>
+
+          <!-- Sector 17: AI & Data Science in Space -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">17</span>
+              <span class="category-badge">Technology</span>
+              <h4 class="mb-3">AI & Data Science in Space Exploration</h4>
+              <p class="text-dark text-opacity-70">Artificial intelligence, machine learning, and data analytics for mission planning, discovery, and autonomous operations.</p>
+            </div>
+          </div>
+
+          <!-- Sector 18: Space Arts & Science Communication -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">18</span>
+              <span class="category-badge">Communication</span>
+              <h4 class="mb-3">Space Arts & Science Communication</h4>
+              <p class="text-dark text-opacity-70">Art, storytelling, and media to communicate space science in engaging, human-centered ways to global audiences.</p>
+            </div>
+          </div>
+
+          <!-- Sector 19: Materials Science & Advanced Manufacturing -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">19</span>
+              <span class="category-badge">Engineering</span>
+              <h4 class="mb-3">Materials Science & Advanced Manufacturing</h4>
+              <p class="text-dark text-opacity-70">Developing materials for extreme conditions and advanced methods like 3D printing for on-site construction.</p>
+            </div>
+          </div>
+
+          <!-- Sector 20: Deep Space Missions & Interstellar Exploration -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">20</span>
+              <span class="category-badge">Exploration</span>
+              <h4 class="mb-3">Deep Space Missions & Interstellar Exploration</h4>
+              <p class="text-dark text-opacity-70">Missions beyond Earth orbit including travel to outer solar system, icy moons, and interstellar probes.</p>
+            </div>
+          </div>
+
+          <!-- Sector 21: Astrobiology & Life Sciences -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">21</span>
+              <span class="category-badge">Life Sciences</span>
+              <h4 class="mb-3">Astrobiology & Life Sciences</h4>
+              <p class="text-dark text-opacity-70">Origins, evolution, and possibility of life in the universe combining biology, chemistry, and astronomy.</p>
+            </div>
+          </div>
+
+          <!-- Sector 22: Astrophysics & Astronomy -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">22</span>
+              <span class="category-badge">Science</span>
+              <h4 class="mb-3">Astrophysics & Astronomy</h4>
+              <p class="text-dark text-opacity-70">Physics of the universe from galaxies and stars to black holes and cosmology through observation and study.</p>
+            </div>
+          </div>
+
+          <!-- Sector 23: Planetary Science & Geology -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">23</span>
+              <span class="category-badge">Science</span>
+              <h4 class="mb-3">Planetary Science & Geology</h4>
+              <p class="text-dark text-opacity-70">Structure, composition, and processes of planets, moons, and asteroids combining geology, chemistry, and physics.</p>
+            </div>
+          </div>
+
+          <!-- Sector 24: GNSS & GIS -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">24</span>
+              <span class="category-badge">Technology</span>
+              <h4 class="mb-3">GNSS & GIS</h4>
+              <p class="text-dark text-opacity-70">Global Navigation Satellite Systems and Geographic Information Systems for positioning, navigation, and mapping.</p>
+            </div>
+          </div>
+
+          <!-- Sector 25: Future Human Society in Space -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">25</span>
+              <span class="category-badge">Society</span>
+              <h4 class="mb-3">Future Human Society in Space</h4>
+              <p class="text-dark text-opacity-70">How human communities will live, work, and govern in off-Earth environments like lunar colonies or Martian cities.</p>
+            </div>
+          </div>
+
+          <!-- Sector 26: Cybersecurity in Space Infrastructure -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">26</span>
+              <span class="category-badge">Security</span>
+              <h4 class="mb-3">Cybersecurity in Space Infrastructure</h4>
+              <p class="text-dark text-opacity-70">Protection of satellites, spacecraft, and communication networks from cyberattacks and data breaches.</p>
+            </div>
+          </div>
+
+          <!-- Sector 27: Space Psychology & Human Factors -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">27</span>
+              <span class="category-badge">Human Factors</span>
+              <h4 class="mb-3">Space Psychology & Human Factors</h4>
+              <p class="text-dark text-opacity-70">Human behavior, mental health, and group dynamics in space missions focusing on isolation, confinement, and stress.</p>
+            </div>
+          </div>
+
+          <!-- Sector 28: Space Energy & Power Systems -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">28</span>
+              <span class="category-badge">Energy</span>
+              <h4 class="mb-3">Space Energy & Power Systems</h4>
+              <p class="text-dark text-opacity-70">How missions and settlements generate, store, and use energy including solar, nuclear, and wireless power systems.</p>
+            </div>
+          </div>
+
+          <!-- Sector 29: Lunar Economy & Resource Utilization -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">29</span>
+              <span class="category-badge">Resources</span>
+              <h4 class="mb-3">Lunar Economy & Resource Utilization</h4>
+              <p class="text-dark text-opacity-70">Using lunar resources (water ice, regolith, metals) for human settlement and industrial growth through ISRU.</p>
+            </div>
+          </div>
+
+          <!-- Sector 30: Philosophy of Space & Cultural Heritage -->
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350" data-aos-duration="1000">
+            <div class="sector-card">
+              <span class="sector-number">30</span>
+              <span class="category-badge">Culture</span>
+              <h4 class="mb-3">Philosophy of Space & Cultural Heritage</h4>
+              <p class="text-dark text-opacity-70">Cultural, ethical, and philosophical questions of humanity's expansion including heritage preservation and identity.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section py-5 py-lg-11 py-xl-12 bg-primary">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-lg-7" data-aos="fade-right" data-aos-delay="100" data-aos-duration="1000">
+            <h2 class="mb-4 text-white">Ready to Explore Your Path to Space?</h2>
+            <p class="fs-5 mb-0 text-white text-opacity-80">Join SHE ORBITS and discover which of these 30 sectors resonates with your passion. Every girl has a place in the future of space exploration.</p>
+          </div>
+          <div class="col-lg-4 text-end" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+            <a href="contact.html" class="btn btn-white text-dark fs-6 px-5 py-3 d-inline-block">
+              <span class="btn-text">Start Your Journey</span>
+              <iconify-icon icon="lucide:arrow-up-right"
+                class="btn-icon bg-primary text-white round-52 rounded-circle hstack justify-content-center fs-7 shadow-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+<!-- Professional Footer -->
+<footer class="footer" style="background: linear-gradient(180deg, #111827 0%, #374151 100%); color: #fff;">
+  <div class="container py-6 py-lg-7">
+    <div class="row gy-5 align-items-start justify-content-between">
+
+      <!-- Logo and Brand -->
+      <div class="col-lg-4 text-center text-lg-start">
+        <img src="../assets/images/logos/logo-light.svg" alt="SHE ORBITS" height="120" class="mb-4">
+        <p class="text-white-50" style="font-size: 15px; line-height: 1.8;">
+          Empowering girls globally to lead in space and STEM fields. We provide a launchpad where science, technology, leadership, and imagination converge, giving young women the tools to contribute meaningfully to space exploration.
+        </p>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="col-lg-4 text-center">
+        <h6 class="text-uppercase fw-semibold mb-4" style="letter-spacing: 1px; color: #E5E7EB;">Explore</h6>
+        <div class="d-flex justify-content-center gap-5 flex-wrap">
+          <ul class="list-unstyled text-start mb-0">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="about.html" class="footer-link">About</a></li>
+            <li><a href="mission-vision.html" class="footer-link">Mission & Vision</a></li>
+            <li><a href="sectors.html" class="footer-link">Sectors</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+          </ul>
+          <ul class="list-unstyled text-start mb-0">
+            <li><a href="#" class="footer-link fw-bold">Opportunities</a></li>
+            <li><a href="programs.html" class="footer-link">Programs</a></li>
+            <li><a href="courses.html" class="footer-link">Courses</a></li>
+            <li><a href="fellowships.html" class="footer-link">Fellowships</a></li>
+            <li><a href="internships.html" class="footer-link">Internships</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact and Social -->
+      <div class="col-lg-3 text-center text-lg-end">
+        <h6 class="text-uppercase fw-semibold mb-4" style="letter-spacing: 1px; color: #E5E7EB;">Connect With Us</h6>
+        <p class="mb-1"><a href="mailto:info@sheorbits.space" class="footer-link">info@sheorbits.space</a></p>
+        <p class="mb-3"><a href="tel:+12025551234" class="footer-link">+1 (202) 555-1234</a></p>
+        <div class="d-flex justify-content-center justify-content-lg-end gap-3">
+          <a href="https://www.facebook.com/sheorbits" class="social-icon" target="_blank"><iconify-icon icon="mdi:facebook"></iconify-icon></a>
+          <a href="https://www.instagram.com/sheorbits" class="social-icon" target="_blank"><iconify-icon icon="mdi:instagram"></iconify-icon></a>
+          <a href="https://x.com/sheorbits" class="social-icon" target="_blank"><iconify-icon icon="mdi:twitter"></iconify-icon></a>
+          <a href="https://www.linkedin.com/company/sheorbits" class="social-icon" target="_blank"><iconify-icon icon="mdi:linkedin"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-top border-white border-opacity-10 mt-5 pt-3 text-center">
+      <p class="mb-0 text-white-50 small">
+        © 2025 <span style="color:#E5E7EB;">SHE ORBITS</span>. All Rights Reserved | Empowering Girls in Space & STEM 🚀
+      </p>
+    </div>
+  </div>
+
+  <style>
+    .footer {
+      position: relative;
+      overflow: hidden;
+      font-family: "Inter", sans-serif;
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.75);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-link:hover {
+      color: #D1D5DB;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background: rgba(156, 163, 175, 0.15);
+      color: #9CA3AF;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      font-size: 20px;
+    }
+
+    .social-icon:hover {
+      background: rgba(156, 163, 175, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .footer h6 {
+      font-size: 15px;
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        text-align: center;
+      }
+      .footer img {
+        height: 80px;
+      }
+      .footer-link {
+        font-size: 15px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .footer {
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+      }
+    }
+  </style>
+</footer>
+
+  <div class="get-template hstack gap-2">
+    <button class="btn bg-primary p-2 round-52 rounded-circle hstack justify-content-center flex-shrink-0"
+      id="scrollToTopBtn">
+      <iconify-icon icon="lucide:arrow-up" class="fs-7 text-white"></iconify-icon>
+    </button>
+  </div>
+
+  <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/libs/owl.carousel/dist/owl.carousel.min.js"></script>
+  <script src="../assets/libs/aos-master/dist/aos.js"></script>
+  <script src="../assets/js/custom.js"></script>
+  <!-- solar icons -->
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+  <script src="../assets/js/liquid-effect-pro.js"></script>
+
+<script>
+  // Function to handle submenu toggle for mobile
+  function toggleSubmenu(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const link = event.currentTarget;
+    const submenu = link.nextElementSibling;
+    
+    if (submenu && submenu.classList.contains('submenu')) {
+      submenu.classList.toggle('show');
+      link.classList.toggle('show');
+    }
+  }
+</script>
+
+</body>
+
+</html>
